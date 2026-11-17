@@ -1,0 +1,94 @@
+models:
+  # ═══════════════════════════════════════════════════════════════
+  # OpenRouter models — single API key covers all tiers
+  # Free models have :free suffix (rate-limited: 20 req/min, 50 req/day)
+  # Paid models bill through your OpenRouter account at listed rates
+  # Verify model IDs: GET https://openrouter.ai/api/v1/models
+  # ═══════════════════════════════════════════════════════════════
+
+  # Tier 3 — High quality (complex reasoning, creative, nuanced judgment)
+  claude-sonnet-5.5:
+    provider: openrouter
+    model_id: anthropic/claude-sonnet-5.5
+    tier: high
+    cost_per_input_token: 0.000002    # $2.00 / 1M tokens
+    cost_per_output_token: 0.000010   # $10.00 / 1M tokens
+    cost_per_cached_token: 0.0000002
+    max_context: 1000000
+    max_output: 128000
+    supports_streaming: true
+
+  gpt-4o:
+    provider: openrouter
+    model_id: openai/gpt-4o-2024-11-20
+    tier: high
+    cost_per_input_token: 0.0000025   # $2.50 / 1M tokens
+    cost_per_output_token: 0.000010   # $10.00 / 1M tokens
+    cost_per_cached_token: 0.00000125
+    max_context: 128000
+    max_output: 16384
+    supports_streaming: true
+
+  # Tier 2 — Medium quality (summarization, classification, structured analysis)
+  gpt-4o-mini:
+    provider: openrouter
+    model_id: openai/gpt-4o-mini
+    tier: medium
+    cost_per_input_token: 0.00000015  # $0.15 / 1M tokens
+    cost_per_output_token: 0.0000006  # $0.60 / 1M tokens
+    cost_per_cached_token: 0.000000075
+    max_context: 128000
+    max_output: 16384
+    supports_streaming: true
+
+  claude-haiku-5.5:
+    provider: openrouter
+    model_id: anthropic/claude-haiku-5.5
+    tier: medium
+    cost_per_input_token: 0.0000001   # $0.10 / 1M tokens
+    cost_per_output_token: 0.0000005  # $0.50 / 1M tokens
+    cost_per_cached_token: 0.00000005
+    max_context: 1000000
+    max_output: 128000
+    supports_streaming: true
+
+  # Tier 1 — Low cost / free (extraction, reformatting, basic Q&A)
+  # Free models rotate on OpenRouter — update model_id if one goes offline
+  # Check available: GET https://openrouter.ai/api/v1/models (filter :free)
+  gemma-free:
+    provider: openrouter
+    model_id: google/gemma-4-31b-it:free
+    tier: low
+    cost_per_input_token: 0.0         # Free
+    cost_per_output_token: 0.0        # Free
+    cost_per_cached_token: 0.0
+    max_context: 131072
+    max_output: 8192
+    supports_streaming: true
+
+  nemotron-free:
+    provider: openrouter
+    model_id: nvidia/nemotron-3.5-lightning:free
+    tier: low
+    cost_per_input_token: 0.0         # Free
+    cost_per_output_token: 0.0        # Free
+    cost_per_cached_token: 0.0
+    max_context: 131072
+    max_output: 8192
+    supports_streaming: true
+
+  # ═══════════════════════════════════════════════════════════════
+  # Direct provider models (optional — requires separate API keys)
+  # Uncomment if you have direct API keys and want to bypass OpenRouter
+  # ═══════════════════════════════════════════════════════════════
+
+  # llama-local:
+  #   provider: ollama
+  #   model_id: llama3.2
+  #   tier: low
+  #   cost_per_input_token: 0.0
+  #   cost_per_output_token: 0.0
+  #   cost_per_cached_token: 0.0
+  #   max_context: 128000
+  #   max_output: 4096
+  #   supports_streaming: true

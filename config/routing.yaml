@@ -1,0 +1,32 @@
+routing:
+  # Tier-to-model mapping (cheapest capable model per tier)
+  tier_map:
+    low: gemma-free        # google/gemma-4-31b-it:free
+    medium: gpt-4o-mini
+    high: claude-sonnet-5.5
+
+  # The "always-big" baseline model for quality comparison
+  reference_model: claude-sonnet-5.5
+
+  # Router confidence threshold: below this, escalate to next tier
+  confidence_threshold: 0.65
+
+  # Cascade: try cheap first, escalate on low-confidence signals
+  cascade:
+    enabled: true
+    escalation_signals:
+      - json_parse_failure
+      - refusal_detected
+      - empty_response
+      - confidence_below_threshold
+
+verification:
+  sample_rate: 0.05        # Judge 5% of requests async
+  judge_model: gpt-4o      # Use a different model family to reduce bias
+  rubric_score_threshold: 3 # Out of 5; below this = routing failure
+
+feedback:
+  retrain_trigger: manual   # "manual" or "schedule"
+  min_samples: 100          # Minimum labeled samples before retraining
+  holdout_fraction: 0.2     # Fraction held out for champion/challenger
+  promotion_threshold: 0.02 # New router must beat current by this margin
