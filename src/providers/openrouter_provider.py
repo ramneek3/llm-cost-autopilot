@@ -17,7 +17,7 @@ from src.providers.base import LLMProvider
 
 class OpenRouterProvider(LLMProvider):
     def __init__(self):
-        self._api_key = os.environ.get("OPENROUTER_API_KEY", "")
+        self._api_key = os.environ.get("OPEN_ROUTER_API_KEY", os.environ.get("OPENROUTER_API_KEY", ""))
         self._base_url = "https://openrouter.ai/api/v1/"
         self._client: httpx.AsyncClient | None = None
 
