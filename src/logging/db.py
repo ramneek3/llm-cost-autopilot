@@ -8,7 +8,10 @@ from pathlib import Path
 
 from src.models.schemas import LLMResponse, QualityScore
 
-DB_PATH = os.environ.get("DATABASE_PATH", str(Path(__file__).resolve().parent.parent.parent / "autopilot.db"))
+_default_path = str(Path(__file__).resolve().parent.parent.parent / "autopilot.db")
+DB_PATH = os.environ.get("DATABASE_PATH", _default_path)
+if DB_PATH != ":memory:" and not os.access(str(Path(DB_PATH).parent), os.W_OK):
+    DB_PATH = "/tmp/autopilot.db"
 
 
 def _get_conn() -> sqlite3.Connection:

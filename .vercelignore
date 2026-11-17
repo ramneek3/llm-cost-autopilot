@@ -1,0 +1,14 @@
+.venv
+.git
+.env
+*.db
+__pycache__
+/models
+benchmark/
+scripts/
+tests/
+src/dashboard/
+.pytest_cache
+*.pyc
+requirements-full.txt
+api/

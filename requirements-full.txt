@@ -1,0 +1,12 @@
+# Full dependencies — includes ML, dashboard, and training tools
+# Install locally: pip install -r requirements-full.txt
+-r requirements.txt
+openai>=1.60.0
+anthropic>=0.42.0
+scikit-learn>=1.6.0
+numpy>=2.0.0
+pandas>=2.2.0
+aiosqlite>=0.21.0
+streamlit>=1.41.0
+plotly>=5.24.0
+joblib>=1.4.2
